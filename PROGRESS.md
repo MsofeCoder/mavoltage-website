@@ -4,31 +4,44 @@
 
 ---
 
-## 2026-07-26 — Phase 1 kickoff (carried in from prior chat-based work)
+## 2026-07-26 — Phase 1 complete: modularized, deployed, verified
 
-**Status:** Visual prototype exists as a single-file `index.html` (built in a prior Claude session, not yet in this repo). This session is scaffolding the repo structure so DeepSeek-V4 can take over inside opencode.
+**Status:** Phase 1 fully complete. Single-file prototype split into modular CSS/JS, base64 assets extracted to real files, production files created (404, robots.txt, sitemap.xml, README.md, netlify.toml), deployed to Netlify free tier.
 
-**Done already (in the prototype, needs to be ported into this repo's file structure):**
-- Full homepage: hero, stats counter, about, services grid, projects grid, testimonials, CTA banner, contact form, footer
-- Real brand colors, Inter font, Font Awesome icons
-- Real hero background photo and real transparent-background logo embedded
-- Real phone number (`+255 766 133 747`) and real Instagram link wired everywhere
-- Contact form has accessible labels, `aria-live` status region
-- Meta description, Open Graph, Twitter Card tags, Schema.org `ElectricalContractor` JSON-LD
-- Skip-to-content link, visible focus states, `prefers-reduced-motion` support
-- Solid-fill icon badges (not pale tints) for stronger contrast — this is now the standing convention for all icon badges
+**Live URL:** https://mavoltage.netlify.app/
+**GitHub repo:** https://github.com/MsofeCoder/mavoltage-website
 
-**Known open items (see PROJECT.md for full list):**
-- Confirm "15+ years" vs "10 years" in hero badge copy
-- Placeholder testimonials and project cards are illustrative only, not real client content
-- Facebook / X / LinkedIn are placeholder `#` links
-- Full street address not yet provided
+**Done this session:**
+- Task 1 — Split inline `<style>` into `main.css`, `components.css`, `sections.css`, `responsive.css`
+- Task 1 — Split inline `<script>` into `main.js`, `nav.js`, `animations.js`, `form.js`
+- Task 1 — Extracted base64 hero photo → `assets/images/hero.jpg` (211KB)
+- Task 1 — Extracted base64 logo → `assets/icons/logo.png`
+- Task 1 — Extracted base64 favicon → `assets/icons/favicon.png`
+- Task 1 — Rewrote `index.html` referencing external CSS/JS and real file paths
+- Task 2 — Created `404.html` with full header/footer branding
+- Task 2 — Created `robots.txt`, `sitemap.xml`, `README.md`, `netlify.toml`
+- Task 2 — Filled `privacy-policy.html` and `terms.html` with placeholder content
+- Task 2 — Created `assets/images/og-cover.jpg`
+- Task 3 — `git init` + commit + push to MsofeCoder/mavoltage-website
+- Task 3 — Deployed via Netlify web UI, site renamed to `mavoltage-electrical`
+- Canonical/OG URLs updated from `mavoltage.co.tz` → `mavoltage.netlify.app` (note: revert in Phase 3 when custom domain connects)
+- Address updated to "S.L.P 36590 - Dar es Salaam" per founder
+- Footer Instagram link wired to real URL; FB/Twitter/LinkedIn remain `#` placeholders
+
+**Decisions made (and why):**
+- og-cover.jpg uses the hero photo as a placeholder (better than a broken image tag; replace with a proper branded cover in Phase 2)
+- Base64 extraction cut page weight significantly — hero photo alone went from ~350KB inline to 211KB file (browser-cacheable)
+- Footer WhatsApp float not duplicated on 404 page (only one CTA per page)
+- NPM artifacts excluded from git via .gitignore (static site has no build deps)
+- Location updated from Morogoro to Dar es Salaam per founder's correction
 
 **Blocked / Needs Input:**
-- Nothing blocking Phase 1 (frontend + free Netlify hosting) — all Phase 1 tasks can proceed with current information.
-- Phase 2+ (real photos, real testimonials, custom domain) is blocked on founder-supplied content.
+- Confirm "15+ years" vs "10 years" in hero badge copy
+- Phase 2 (real photos, testimonials, FB/X/LinkedIn URLs, TBS badge) — blocked on founder-supplied content
+- Phase 3 (custom domain, analytics, Lighthouse audit) — not started
 
-**Next action:** Execute `IMPLEMENTATION_PLAN.md` Phase 1 today — modularize the prototype into the proper file structure, push to GitHub, deploy to Netlify on the free tier, confirm the live URL works on mobile and desktop.
+**Next action:**
+- Await founder content for Phase 2
 
 ---
 
