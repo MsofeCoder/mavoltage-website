@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mavoltage.netlify.app/sitemap.xml
