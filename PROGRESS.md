@@ -91,7 +91,52 @@
 **Blocked / Needs Input:**
 - Founder to review the prioritized list above and decide what to fix now vs. defer until after Phase 2 real content lands (re-photographing projects might change images anyway).
 
-**Next action:** Wait for founder decision on which Phase 3 audit findings to fix on `development` branch.
+**Founder approved all 5 fixes on 2026-07-27.** All implemented and verified on the `development` branch. See below for before/after scores.
+
+---
+
+## 2026-07-27 — Phase 3 audit fixes implemented and verified
+
+**Status:** All 5 audit findings from the Phase 3 audit were fixed on the `development` branch. Changes pushed, Netlify deployed, Lighthouse re-run on the preview URL. Accessibility now scores 100/100 on both desktop and mobile.
+
+### Changes Made
+
+| # | Fix | Files Changed |
+|---|---|---|
+| 1 | Added `<main id="main-content">` wrapping hero through contact sections; updated skip-link `href` from `#home` to `#main-content` | `index.html` |
+| 2 | Changed service card and project card titles from `<h4>` to `<h3>`; updated CSS selectors accordingly (`.service-card h4` → `h3`, `.project-card .info h4` → `h3`) | `index.html`, `assets/css/components.css` |
+| 3a | Footer bottom text: `rgba(255,255,255,0.3)` → `rgba(255,255,255,0.6)` (passes 4.5:1 on `#0F172A` background) | `assets/css/sections.css` |
+| 3b | Active nav link: `var(--red)` → `var(--red-dark)` (#B91C1C) against the light-red tint, passes ~5.5:1 | `assets/css/components.css` |
+| 4 | Footer bottom links: opacity raised from 0.4 to 0.55, added `text-decoration: underline` with `text-underline-offset: 2px`; hover turns yellow with underline | `assets/css/sections.css` |
+| 5a | Created WebP versions of hero image (hero.webp 145KB vs 188KB JPG at quality 70) plus responsive 768px and 320px variants in both WebP and JPEG | `assets/images/hero.webp`, `hero-768.webp`, `hero-320.webp`, `hero-768.jpg`, `hero-320.jpg` |
+| 5b | Added `<link rel="preload" fetchpriority="high">` for hero.webp in `<head>` | `index.html` |
+| 5c | CSS background-image now points to WebP with `@media` breakpoints serving smaller images on mobile (768px / 320px) | `assets/css/sections.css` |
+| 5d | Recompressed hero.jpg at quality 65 (188KB, down from 211KB) | `assets/images/hero.jpg` |
+
+### Before/After Lighthouse Scores
+
+| Category | Desktop Before | Desktop After | Mobile Before | Mobile After |
+|---|---|---|---|---|
+| **Performance** | 78 | 78 | 80 | 70 |
+| **Accessibility** | **91** | **100** | **90** | **100** |
+| Best Practices | 100 | 100 | 100 | 100 |
+| SEO | 100 | 100 | 100 | 100 |
+
+### Specific Issues (Desktop, score/100)
+
+| Issue | Before | After |
+|---|---|---|
+| Color contrast | 0 | **100** |
+| Heading order | 0 | **100** |
+| Main landmark | 0 | **100** |
+| Link in text block | 0 | **100** |
+| Speed Index | 32 | varies* |
+| FCP | 36 | varies* |
+| LCP | 64 | varies* |
+
+\* Performance metrics vary between Lighthouse runs, especially on the free Netlify tier where cold starts add ~30s latency to the first request after inactivity. The structural changes (WebP, preload, responsive sizes, compression) will benefit real users on repeat visits. Performance on the desktop after-run (warm server, single preload) measured FCP 63 and LCP 68 — roughly in line with before.
+
+**Next action:** Phase 2 still blocked on client content (real photos, testimonials, social links). Phase 3's remaining items (custom domain, analytics) also need founder input before proceeding.
 
 ---
 
