@@ -1,4 +1,4 @@
-/* ===== COMPONENTS.CSS — Buttons, Nav, Cards, Forms, Badges ===== */
+/* ===== COMPONENTS.CSS ï¿½ Buttons, Nav, Cards, Forms, Badges ===== */
 
 /* --- Buttons --- */
 .btn {
@@ -200,7 +200,7 @@ nav .container {
     background: var(--grey-light);
 }
 .nav-links a.active {
-    color: var(--red);
+    color: var(--red-dark);
     background: rgba(220,38,38,0.08);
 }
 .nav-links .nav-cta {
@@ -392,7 +392,7 @@ nav .container {
 .service-card:hover .service-icon {
     transform: scale(1.1) rotate(-5deg);
 }
-.service-card h4 {
+.service-card h3 {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -448,7 +448,7 @@ nav .container {
 .project-card:nth-child(1) .tag-sm { background: rgba(245,158,11,0.12); color: #D97706; }
 .project-card:nth-child(2) .tag-sm { background: rgba(37,99,235,0.12); color: var(--blue); }
 .project-card:nth-child(3) .tag-sm { background: rgba(220,38,38,0.12); color: var(--red); }
-.project-card .info h4 {
+.project-card .info h3 {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 8px;

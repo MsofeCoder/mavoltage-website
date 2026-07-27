@@ -28,6 +28,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
 
+    <!-- Preload hero image for LCP performance -->
+    <link rel="preload" href="assets/images/hero.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="assets/images/hero.jpg" as="image" type="image/jpeg" fetchpriority="high">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -68,7 +72,7 @@
     </script>
 </head>
 <body>
-    <a href="#home" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- WhatsApp Float -->
     <div class="whatsapp-float">
@@ -124,6 +128,9 @@
             </ul>
         </div>
     </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="home">
@@ -215,22 +222,22 @@
             <div class="services-grid">
                 <div class="service-card reveal reveal-delay-1">
                     <div class="service-icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
-                    <h4>Industrial Electrical</h4>
+                    <h3>Industrial Electrical</h3>
                     <p>Complete electrical infrastructure for manufacturing plants, factories, and commercial complexes across Tanzania.</p>
                 </div>
                 <div class="service-card reveal reveal-delay-2">
                     <div class="service-icon"><i class="fas fa-home" aria-hidden="true"></i></div>
-                    <h4>Residential Wiring</h4>
+                    <h3>Residential Wiring</h3>
                     <p>Modern home electrical installations including lighting design, outlets, smart home systems, and safety wiring.</p>
                 </div>
                 <div class="service-card reveal reveal-delay-3">
                     <div class="service-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
-                    <h4>Maintenance &amp; Repair</h4>
+                    <h3>Maintenance &amp; Repair</h3>
                     <p>24/7 emergency repair services and scheduled maintenance to keep your electrical systems running safely and efficiently.</p>
                 </div>
                 <div class="service-card reveal reveal-delay-4">
                     <div class="service-icon"><i class="fas fa-solar-panel" aria-hidden="true"></i></div>
-                    <h4>Energy Solutions</h4>
+                    <h3>Energy Solutions</h3>
                     <p>Solar panel installation, energy-efficient retrofits, and electrical load management for cost savings.</p>
                 </div>
             </div>
@@ -253,7 +260,7 @@
                     </div>
                     <div class="info">
                         <span class="tag-sm">Industrial</span>
-                        <h4>Morogoro Industrial Park</h4>
+                        <h3>Morogoro Industrial Park</h3>
                         <p>Complete electrical infrastructure for a 12-acre industrial complex</p>
                     </div>
                 </div>
@@ -264,7 +271,7 @@
                     </div>
                     <div class="info">
                         <span class="tag-sm">Commercial</span>
-                        <h4>Dar es Salaam Office Tower</h4>
+                        <h3>Dar es Salaam Office Tower</h3>
                         <p>Full electrical fit-out for a 20-story commercial building</p>
                     </div>
                 </div>
@@ -275,7 +282,7 @@
                     </div>
                     <div class="info">
                         <span class="tag-sm">Residential</span>
-                        <h4>Mikocheni Luxury Homes</h4>
+                        <h3>Mikocheni Luxury Homes</h3>
                         <p>Smart home electrical systems for 30 premium residences</p>
                     </div>
                 </div>
@@ -423,6 +430,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- ===== FOOTER ===== -->
     <footer>
