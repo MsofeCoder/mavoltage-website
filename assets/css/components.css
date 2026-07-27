@@ -381,16 +381,22 @@ nav .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    overflow: hidden;
     margin-bottom: 20px;
     transition: var(--transition);
 }
-.service-card:nth-child(1) .service-icon { background: var(--red); color: white; box-shadow: 0 6px 16px rgba(220,38,38,0.3); }
-.service-card:nth-child(2) .service-icon { background: var(--yellow); color: var(--darker); box-shadow: 0 6px 16px rgba(245,158,11,0.3); }
-.service-card:nth-child(3) .service-icon { background: var(--blue); color: white; box-shadow: 0 6px 16px rgba(37,99,235,0.3); }
-.service-card:nth-child(4) .service-icon { background: linear-gradient(135deg, var(--red), var(--blue)); color: white; box-shadow: 0 6px 16px rgba(37,99,235,0.25); }
+.service-card:nth-child(1) .service-icon { box-shadow: 0 0 0 2px var(--red); }
+.service-card:nth-child(2) .service-icon { box-shadow: 0 0 0 2px var(--yellow); }
+.service-card:nth-child(3) .service-icon { box-shadow: 0 0 0 2px var(--blue); }
+.service-card:nth-child(4) .service-icon { box-shadow: 0 0 0 2px var(--blue); }
 .service-card:hover .service-icon {
     transform: scale(1.1) rotate(-5deg);
+}
+.service-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
 }
 .service-card h3 {
     font-size: 1.25rem;
@@ -422,17 +428,21 @@ nav .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
+    background: var(--darker);
     position: relative;
     overflow: hidden;
 }
-.project-card:nth-child(1) .thumb { background: linear-gradient(135deg, #1E293B, #334155); color: var(--yellow); }
-.project-card:nth-child(2) .thumb { background: linear-gradient(135deg, #1E3A5F, #0F172A); color: var(--blue-light); }
-.project-card:nth-child(3) .thumb { background: linear-gradient(135deg, #2D1B1B, #1E293B); color: var(--red); }
 .project-card .thumb .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+.project-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
 }
 .project-card .info {
     padding: 24px;
