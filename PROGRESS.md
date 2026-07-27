@@ -136,7 +136,13 @@
 
 \* Performance metrics vary between Lighthouse runs, especially on the free Netlify tier where cold starts add ~30s latency to the first request after inactivity. The structural changes (WebP, preload, responsive sizes, compression) will benefit real users on repeat visits. Performance on the desktop after-run (warm server, single preload) measured FCP 63 and LCP 68 — roughly in line with before.
 
-**Next action:** Phase 2 still blocked on client content (real photos, testimonials, social links). Phase 3's remaining items (custom domain, analytics) also need founder input before proceeding.
+### Performance verdict — below original baseline (73 vs 78), held for founder review
+
+The preload-after-CSS fix recovered most of the regression (59→73) but didn't return to the original 78. Root cause analysis in earlier entry. The preload tag — even after CSS — adds one extra network request and may still compete with late-discovered resources. Simplest path back to 78+ would be removing the preload entirely and letting the browser discover hero.webp naturally from the CSS preload scanner.
+
+Per founder instruction, no further performance iteration without explicit go-ahead. Awaiting decision.
+
+**Next action:** Phase 2 still blocked on client content (real photos, testimonials, social links). Phase 3's remaining items (custom domain, analytics) also need founder input before proceeding. Performance fix held for founder review.
 
 ---
 
