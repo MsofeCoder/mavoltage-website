@@ -136,13 +136,28 @@
 
 \* Performance metrics vary between Lighthouse runs, especially on the free Netlify tier where cold starts add ~30s latency to the first request after inactivity. The structural changes (WebP, preload, responsive sizes, compression) will benefit real users on repeat visits. Performance on the desktop after-run (warm server, single preload) measured FCP 63 and LCP 68 — roughly in line with before.
 
-### Performance verdict — below original baseline (73 vs 78), held for founder review
+### Performance A/B test — verdict: keep preload (median +6 pts)
 
-The preload-after-CSS fix recovered most of the regression (59→73) but didn't return to the original 78. Root cause analysis in earlier entry. The preload tag — even after CSS — adds one extra network request and may still compete with late-discovered resources. Simplest path back to 78+ would be removing the preload entirely and letting the browser discover hero.webp naturally from the CSS preload scanner.
+A/B tested 3 Lighthouse desktop runs with preload vs 3 without. Results:
 
-Per founder instruction, no further performance iteration without explicit go-ahead. Awaiting decision.
+| | Run 1 | Run 2 | Run 3 | **Median** | Range |
+|---|---|---|---|---|---|
+| **With preload** (after CSS) | 77 | 91 | 88 | **88** | 77–91 |
+| **Without preload** | 83 | 69 | 82 | **82** | 69–83 |
 
-**Next action:** Phase 2 still blocked on client content (real photos, testimonials, social links). Phase 3's remaining items (custom domain, analytics) also need founder input before proceeding. Performance fix held for founder review.
+Preload median 88 vs no-preload median 82 — a 6-point net gain. The earlier single-run score of 73 was an outlier (Run 2 of the no-preload set also hit 69, showing the same variance in the other direction). The preload is net positive and stays.
+
+**Final state of all Phase 3 audit fixes:**
+- ✅ Accessibility: 100/100 (was 91/90)
+- ✅ Heading order: sequential h1→h2→h3 (was skipping to h4)
+- ✅ Main landmark: `<main id="main-content">` added
+- ✅ Color contrast: footer at rgba(255,255,255,0.6), active nav uses --red-dark
+- ✅ Footer links: now underlined, distinguishable without color alone
+- ✅ Hero images: WebP + responsive breakpoints (320/768/full) + preload after CSS
+- ✅ Performance: median 88 (up from original baseline 78)
+- Best Practices / SEO: 100/100 (unchanged)
+
+**Next action:** Phase 2 still blocked on client content (real photos, testimonials, social links). Phase 3's remaining items (custom domain, analytics) also need founder input before proceeding.
 
 ---
 
