@@ -28,6 +28,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
 
+    <!-- Preload hero image for LCP performance -->
+    <link rel="preload" href="assets/images/hero.webp" as="image" type="image/webp" fetchpriority="high">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -36,9 +39,6 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/sections.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-
-    <!-- Preload hero image for LCP performance (after CSS to avoid contention) -->
-    <link rel="preload" href="assets/images/hero.webp" as="image" type="image/webp">
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -481,7 +481,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; <span id="year">2026</span> Mavoltage Electrical Contractor. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+                &copy; <span id="year">2026</span> Mavoltage Electrical Contractor. All rights reserved. | <a href='/privacy-policy'>Privacy Policy</a> | <a href='/terms'>Terms of Service</a>
             </div>
         </div>
     </footer>
