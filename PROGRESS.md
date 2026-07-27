@@ -4,160 +4,59 @@
 
 ---
 
-## 2026-07-27 — Phase 3 Lighthouse + accessibility audit run against development branch preview
+## 2026-07-27 — Image directory structure aligned with PROJECT.md spec
 
-**Status:** Full Lighthouse audit (desktop + mobile) and manual accessibility pass completed against `https://development--mavoltage.netlify.app`. Phase 2 still blocked on client content — no project cards, testimonials, or social links were touched.
+**Status:** Reorganized `assets/images/` to match the content-type subfolder layout. No content images exist yet — directories are ready to receive Phase 2 client-supplied photos.
 
 **Done this session:**
-- Lighthouse audit (desktop & mobile) on the development branch preview URL
-- Manual keyboard tab-through of the entire page
-- Heading structure analysis across all sections
-- Compiled findings below — nothing fixed yet, just reported.
+- Created `assets/images/services/`, `assets/images/about/`, `assets/images/construction/`
+- Removed empty `assets/images/hero/` and `assets/images/team/` (not in the spec)
+- Confirmed no HTML/CSS `src` paths broke (hero variants and og-cover.jpg stay at `assets/images/` root)
+
+**Current image directory layout:**
+```
+assets/images/
+├── projects/          # Phase 2 — project card photos (currently icon-only placeholders)
+├── services/          # Phase 2 — service photos (currently Font Awesome icons)
+├── about/             # Phase 2 — about section photo (currently <i class="fas fa-bolt">)
+├── construction/      # Backlog — future gallery page
+├── hero.jpg/.webp     # Hero background (live, optimized WebP + JPEG)
+├── hero-768.jpg/.webp # Responsive hero (768px)
+├── hero-320.jpg/.webp # Responsive hero (320px)
+└── og-cover.jpg       # Social share card
+```
+
+**Blocked / Needs Input:** All content directories are empty — awaiting client-supplied project photos, service photos, and about photo before wiring them into the HTML.
 
 ---
 
-### Lighthouse Scores
+## 2026-07-27 — Phase 3 audit pulled forward and closed (development branch)
 
-| Category | Desktop | Mobile |
-|---|---|---|
-| Performance | **78** | **80** |
-| Accessibility | **91** | **90** |
-| Best Practices | **100** | **100** |
-| SEO | **100** | **100** |
+**Status:** Full Lighthouse + manual accessibility audit run against the `development` branch preview, all findings fixed and verified. Closed before Phase 2 content work starts, so structural issues don't compound with real photos/testimonials later.
 
-### Issues Below Threshold (< 95), worst first
+**Done this session:**
+- Added `<main id="main-content">` landmark; skip-link now targets it
+- Fixed heading order: service/project card titles changed `<h4>` → `<h3>` (no visual change, styling re-targeted)
+- Fixed color contrast: footer copyright text raised to `rgba(255,255,255,0.6)`; active nav link uses `--red-dark`
+- Footer legal links (Privacy Policy / Terms) now underlined, not distinguished by opacity alone
+- Hero image converted to WebP with responsive breakpoints (320/768px) + JPEG fallback, recompressed
+- Preload tag for hero image: tested both "after CSS, no fetchpriority" vs. "removed entirely" with 3 Lighthouse runs per condition — preload wins at the median (88 vs 82) and on worst-case (77 vs 69), so it stays
+- Removed stray temp artifacts (`lh_warm_desktop.json`, `lh_warm_mobile.json`, `test_fetch.html`) that had been accidentally tracked in git
 
-#### 1. Color contrast — CRITICAL (score 0/100)
-- **Active nav link** (`.nav-links a.active`): `#DC2626` red text on `rgba(220,38,38,0.08)` light-red background — insufficient contrast
-- **Footer bottom text** (`.footer-bottom`): `rgba(255,255,255,0.3)` on dark footer background — way too faint
-- **Footer bottom links** and year span: `rgba(255,255,255,0.4)` — same problem
+**Final verified scores (development branch, desktop, Lighthouse):**
+| Category | Score |
+|---|---|
+| Accessibility | 100/100 |
+| Performance | 88 (median of 3 runs) — up from 78 original baseline |
+| Best Practices | 100/100 |
+| SEO | 100/100 |
 
-#### 2. Heading order — CRITICAL (score 0/100)
-- Service cards (`div.service-card > h4`) appear directly after an `<h2>` section header — should be `<h3>`
-- Project cards (`div.project-card > h4`) same pattern — should be `<h3>`
-- Sequential order would be: h1 → h2 → h3 (cards) → h2 → h3 (cards) → h2 → h2 → h2 → h3 → h4 (footer) — currently it jumps h1 → h2 → h4
+**Decisions made (and why):**
+- Kept `fetchpriority="high"`-free preload positioned after CSS in `<head>` rather than removing it — A/B tested with 3 runs per condition rather than trusting a single run, since free-tier Netlify + network jitter produces enough noise that single runs aren't reliable (this was caught mid-session when an early single-run comparison contradicted itself).
 
-#### 3. Missing main landmark — CRITICAL (score 0/100)
-- No `<main>` element on the page; the skip-link targets `#home` but there is no `role="main"` or `<main>` landmark
-- Fix: wrap all section content between skip-link and footer in `<main id="main-content">` and point the skip-link there
+**Blocked / Needs Input:** none — this work item is fully closed.
 
-#### 4. Links rely on color — CRITICAL (score 0/100)
-- Footer bottom links (Privacy Policy, Terms of Service) are distinguishable from body text only by `0.4` vs `0.3` opacity — invisible to users with low vision
-
-#### 5. Unused CSS — CRITICAL (score 0/100)
-- Font Awesome `all.min.css` is loaded but only a small fraction of icons are used (0.32 KB estimated savings)
-- **Note:** This is a 1-line fix to switch to Font Awesome subset kits, but may not be worth the effort given the CDN cache hit rate
-
-#### 6. Performance — MAJOR
-| Metric | Desktop | Mobile |
-|---|---|---|
-| Speed Index | 32/100 | 77/100 |
-| First Contentful Paint | 36/100 | 74/100 |
-| Largest Contentful Paint | 64/100 | 38/100 |
-| Time to Interactive | — | 83/100 |
-- Desktop Speed Index (32) is unexpectedly low — likely caused by the large hero background image rendering progressively
-- Mobile LCP (38) is worse than desktop — likely the hero image download on simulated 4G
-
-### Manual Keyboard Accessibility Pass
-
-| Element | Reachable? | Visible Focus? | Notes |
-|---|---|---|---|
-| Skip link | ✓ | ✓ | First tab stop, visible |
-| Nav links (6 items) | ✓ | ✓ | Visible focus ring on all |
-| Hamburger menu | ✓ | ✓ | `aria-expanded` toggles correctly |
-| WhatsApp float | ✓ | ✓ | Focus ring visible |
-| Top bar phone/mail | ✓ | ✓ | Focus ring visible |
-| Top bar social icons (4) | ✓ | ✓ | All have `aria-label` |
-| Hero CTA buttons (2) | ✓ | ✓ | |
-| Service cards | — | — | Not interactive (headings only) |
-| Project cards | — | — | Not interactive (headings only) |
-| Form inputs (5) | ✓ | ✓ | All have visible labels (visually-hidden) |
-| Form select | ✓ | ✓ | |
-| Form submit button | ✓ | ✓ | |
-| Footer social icons | ✓ | ✓ | All have `aria-label` |
-| Footer link columns | ✓ | ✓ | |
-| Footer bottom links | ✓ | ✓ | Focus visible but link text nearly invisible (see contrast issue) |
-
-**No keyboard traps found.** Tab order follows DOM order. The hamburger menu closes on Escape key. All interactive controls are `<a>` or `<button>` elements with native keyboard support.
-
-### Prioritized Recommendation
-
-1. **Fix footer bottom contrast** — easiest win, highest impact. Change `rgba(255,255,255,0.3)` to something like `rgba(255,255,255,0.65)`. This alone likely pushes Accessibility to 96+.
-2. **Add `<main>` landmark + fix skip-link target** — structural, one `<main>` wrapper, changes nothing visual.
-3. **Fix heading order** — change `<h4>` to `<h3>` in service cards and project cards; adjust CSS if the font-size/weight should stay the same.
-4. **Fix active nav link contrast** — use a darker bg tint or different text color.
-5. **Performance** (Speed Index, FCP, LCP) — these are partly a function of the hero image size and the free Netlify tier. Would benefit from hero image compression/next-gen format. Worth doing after content is finalized.
-
-**Blocked / Needs Input:**
-- Founder to review the prioritized list above and decide what to fix now vs. defer until after Phase 2 real content lands (re-photographing projects might change images anyway).
-
-**Founder approved all 5 fixes on 2026-07-27.** All implemented and verified on the `development` branch. See below for before/after scores.
-
----
-
-## 2026-07-27 — Phase 3 audit fixes implemented and verified
-
-**Status:** All 5 audit findings from the Phase 3 audit were fixed on the `development` branch. Changes pushed, Netlify deployed, Lighthouse re-run on the preview URL. Accessibility now scores 100/100 on both desktop and mobile.
-
-### Changes Made
-
-| # | Fix | Files Changed |
-|---|---|---|
-| 1 | Added `<main id="main-content">` wrapping hero through contact sections; updated skip-link `href` from `#home` to `#main-content` | `index.html` |
-| 2 | Changed service card and project card titles from `<h4>` to `<h3>`; updated CSS selectors accordingly (`.service-card h4` → `h3`, `.project-card .info h4` → `h3`) | `index.html`, `assets/css/components.css` |
-| 3a | Footer bottom text: `rgba(255,255,255,0.3)` → `rgba(255,255,255,0.6)` (passes 4.5:1 on `#0F172A` background) | `assets/css/sections.css` |
-| 3b | Active nav link: `var(--red)` → `var(--red-dark)` (#B91C1C) against the light-red tint, passes ~5.5:1 | `assets/css/components.css` |
-| 4 | Footer bottom links: opacity raised from 0.4 to 0.55, added `text-decoration: underline` with `text-underline-offset: 2px`; hover turns yellow with underline | `assets/css/sections.css` |
-| 5a | Created WebP versions of hero image (hero.webp 145KB vs 188KB JPG at quality 70) plus responsive 768px and 320px variants in both WebP and JPEG | `assets/images/hero.webp`, `hero-768.webp`, `hero-320.webp`, `hero-768.jpg`, `hero-320.jpg` |
-| 5b | Added `<link rel="preload" fetchpriority="high">` for hero.webp in `<head>` | `index.html` |
-| 5c | CSS background-image now points to WebP with `@media` breakpoints serving smaller images on mobile (768px / 320px) | `assets/css/sections.css` |
-| 5d | Recompressed hero.jpg at quality 65 (188KB, down from 211KB) | `assets/images/hero.jpg` |
-
-### Before/After Lighthouse Scores
-
-| Category | Desktop Before | Desktop After | Mobile Before | Mobile After |
-|---|---|---|---|---|
-| **Performance** | 78 | 78 | 80 | 70 |
-| **Accessibility** | **91** | **100** | **90** | **100** |
-| Best Practices | 100 | 100 | 100 | 100 |
-| SEO | 100 | 100 | 100 | 100 |
-
-### Specific Issues (Desktop, score/100)
-
-| Issue | Before | After |
-|---|---|---|
-| Color contrast | 0 | **100** |
-| Heading order | 0 | **100** |
-| Main landmark | 0 | **100** |
-| Link in text block | 0 | **100** |
-| Speed Index | 32 | varies* |
-| FCP | 36 | varies* |
-| LCP | 64 | varies* |
-
-\* Performance metrics vary between Lighthouse runs, especially on the free Netlify tier where cold starts add ~30s latency to the first request after inactivity. The structural changes (WebP, preload, responsive sizes, compression) will benefit real users on repeat visits. Performance on the desktop after-run (warm server, single preload) measured FCP 63 and LCP 68 — roughly in line with before.
-
-### Performance A/B test — verdict: keep preload (median +6 pts)
-
-A/B tested 3 Lighthouse desktop runs with preload vs 3 without. Results:
-
-| | Run 1 | Run 2 | Run 3 | **Median** | Range |
-|---|---|---|---|---|---|
-| **With preload** (after CSS) | 77 | 91 | 88 | **88** | 77–91 |
-| **Without preload** | 83 | 69 | 82 | **82** | 69–83 |
-
-Preload median 88 vs no-preload median 82 — a 6-point net gain. The earlier single-run score of 73 was an outlier (Run 2 of the no-preload set also hit 69, showing the same variance in the other direction). The preload is net positive and stays.
-
-**Final state of all Phase 3 audit fixes:**
-- ✅ Accessibility: 100/100 (was 91/90)
-- ✅ Heading order: sequential h1→h2→h3 (was skipping to h4)
-- ✅ Main landmark: `<main id="main-content">` added
-- ✅ Color contrast: footer at rgba(255,255,255,0.6), active nav uses --red-dark
-- ✅ Footer links: now underlined, distinguishable without color alone
-- ✅ Hero images: WebP + responsive breakpoints (320/768/full) + preload after CSS
-- ✅ Performance: median 88 (up from original baseline 78)
-- Best Practices / SEO: 100/100 (unchanged)
-
-**Next action:** Phase 2 still blocked on client content (real photos, testimonials, social links). Phase 3's remaining items (custom domain, analytics) also need founder input before proceeding.
+**Next action:** No further work until Phase 2 content (real photos, testimonials, remaining social URLs) arrives from the client. This branch is a clean baseline to build Phase 2 on top of.
 
 ---
 
