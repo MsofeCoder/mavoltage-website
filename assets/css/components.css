@@ -444,6 +444,11 @@ nav .container {
     position: absolute;
     inset: 0;
 }
+.project-card .thumb i {
+    font-size: 48px;
+    position: relative;
+    z-index: 1;
+}
 .project-card .info {
     padding: 24px;
 }
