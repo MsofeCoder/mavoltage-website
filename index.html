@@ -389,9 +389,9 @@
                     </div>
                 </div>
                 <div class="contact-form-wrap reveal reveal-delay-1">
-                    <form id="contactForm" aria-label="Contact form" novalidate data-netlify="true" name="contact">
+                    <form id="contactForm" aria-label="Contact form" novalidate data-netlify="true" name="contact" netlify-honeypot="bot-field">
                         <input type="hidden" name="form-name" value="contact">
-                        <p class="hidden-field"><label>Don't fill this out: <input name="bot-field"></label></p>
+                        <p class="hidden-field"><label>Don't fill this out: <input name="bot-field" aria-hidden="true" tabindex="-1"></label></p>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="cf-name" class="visually-hidden">Your Name</label>
