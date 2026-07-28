@@ -560,3 +560,25 @@ nav .container {
 .contact-form-wrap .form-group {
     margin-bottom: 16px;
 }
+
+.hidden-field {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.hidden-field label {
+    display: block;
+}
+
+.hidden-field input {
+    border: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+}
