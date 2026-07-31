@@ -1,137 +1,80 @@
-# IMPLEMENTATION_PLAN.md — Mavoltage Website
+# IMPLEMENTATION_PLAN.md — Mavoltage Electrical Contractor Website
 
-## Overview
-
-| Phase | Scope | Target |
-|---|---|---|
-| **Phase 1** | Modularize prototype, deploy live on free Netlify hosting | **Today** |
-| Phase 2 | Swap in real project photos, real testimonials, remaining social links, address | When founder supplies content |
-| Phase 3 | Custom domain (`mavoltage.co.tz`), analytics, final Lighthouse/accessibility audit | After Phase 2 |
-| Phase 4 | Future enhancements (blog, CMS, multilingual, etc. — see PROJECT.md) | Backlog, not scheduled |
-
-This document only fully specifies **Phase 1**. Do not start Phase 2 work until Phase 1's acceptance criteria all pass and the founder has supplied Phase 2 content.
+**Repo:** github.com/MsofeCoder/mavoltage-website
+**Production:** mavoltage.netlify.app (branch: `master`)
+**Development preview:** development--mavoltage.netlify.app (branch: `development`)
+**Target custom domain:** mavoltage.co.tz (currently unconfirmed/offline)
 
 ---
 
-## Phase 1 — Full Scope (Complete Today)
+## Phase 1 — Core Site Build (COMPLETE)
 
-### Goal
-Take the existing single-file prototype and ship it as a **live, working, free-hosted website** at a Netlify URL, with the code properly modularized into the production file structure — not just a local preview.
+Status: ✅ Deployed to production (`master`)
 
-### Task 1 — Port the prototype into the production file structure
+- Modular CSS/JS files (main/components/sections/responsive)
+- Image extraction and asset pipeline
+- 404.html, robots.txt, sitemap.xml, README.md, netlify.toml
+- Git / GitHub / Netlify setup
+- Full page sections: hero, stats, about, services, projects, testimonials, CTA, contact form, footer
+- Netlify Forms with honeypot spam protection
 
-Split the single-file `index.html` prototype into:
-
-```
-mavoltage-website/
-├── index.html
-├── 404.html
-├── README.md
-├── robots.txt
-├── sitemap.xml
-├── netlify.toml
-├── AGENT.md
-├── PROJECT.md
-├── PROGRESS.md
-├── IMPLEMENTATION_PLAN.md
-├── assets/
-│   ├── css/
-│   │   ├── main.css          # variables, reset, base typography
-│   │   ├── components.css    # buttons, nav, cards, forms, badges
-│   │   ├── sections.css      # hero, about, services, projects, testimonials, contact, footer
-│   │   └── responsive.css    # all @media rules
-│   ├── js/
-│   │   ├── main.js           # init / wiring only
-│   │   ├── nav.js            # hamburger, scroll-spy, sticky header
-│   │   ├── animations.js     # scroll reveal, counters
-│   │   └── form.js           # contact form validation + submit
-│   ├── images/
-│   │   ├── hero.jpg          # extracted from the base64 embed, served as a real file
-│   │   └── og-cover.jpg
-│   └── icons/
-│       ├── logo.png          # extracted from the base64 embed
-│       └── favicon.png
-└── docs/
-    └── QA-CHECKLIST.md
-```
-
-**Rule:** the prototype currently embeds the hero photo and logo as base64 data URIs directly in the CSS/HTML. For production, extract them to real files in `assets/images/` and `assets/icons/` and reference them normally (`background-image: url('assets/images/hero.jpg')`, `<img src="assets/icons/logo.png">`). This cuts page weight dramatically and lets the browser cache them separately.
-
-**Do not change any visual design, copy, brand colors, or behavior while doing this split** — it is a refactor, not a redesign. If something looks different after the split, that's a bug, not an improvement.
-
-### Task 2 — Add the missing production files
-
-- `404.html` — reuse the site's header/footer and nav; simple centered message ("Page not found") with a button back to home. Same brand styling as the main site.
-- `robots.txt` — allow all, point to sitemap:
-  ```
-  User-agent: *
-  Allow: /
-  Sitemap: https://mavoltage.netlify.app/sitemap.xml
-  ```
-  (Update the domain once the custom domain is live in Phase 3.)
-- `sitemap.xml` — list `index.html` and `404.html` is not included; add other real pages as they're created.
-- `README.md` — what this project is, how to run it locally (it's static — "open index.html" or serve with any static server), file structure explanation, deployment instructions.
-- `netlify.toml`:
-  ```toml
-  [build]
-    publish = "."
-
-  [[redirects]]
-    from = "/*"
-    to = "/404.html"
-    status = 404
-  ```
-
-### Task 3 — Deploy to Netlify (free tier)
-
-1. Initialize a git repository in the project folder if one doesn't exist (`git init`).
-2. Create a `.gitignore` (at minimum: `.DS_Store`, `node_modules/` even though unused, editor folders).
-3. Commit everything and push to a new GitHub repository.
-4. In Netlify: **Add new site → Import an existing project → connect the GitHub repo.**
-5. Build settings: no build command needed (it's static). Publish directory: `.` (repo root).
-6. Deploy. Netlify will assign a free subdomain like `mavoltage.netlify.app` (or similar — Netlify auto-generates unless you rename the site in **Site settings → Site details → Change site name**).
-7. Confirm HTTPS is active (Netlify provisions this automatically and free of charge).
-8. Rename the Netlify site to something recognizable, e.g. `mavoltage-electrical`, so the URL reads `mavoltage-electrical.netlify.app`.
-
-### Task 4 — Verify the live site
-
-Open the live Netlify URL and check:
-- [ ] Loads with no console errors
-- [ ] Hero photo and logo display correctly (not broken image icons — this is the most common regression after extracting base64 assets to files)
-- [ ] Nav, hamburger menu, and scroll-spy work
-- [ ] Stat counters animate on scroll
-- [ ] Contact form shows the "sending → sent" state (it's front-end only for now — no backend, so it doesn't actually send email yet; that's fine for Phase 1, just don't claim otherwise to the founder)
-- [ ] WhatsApp float button opens `wa.me/255766133747` correctly
-- [ ] Site is usable at 320px width (use browser dev tools device toolbar)
-- [ ] 404.html displays correctly when visiting a nonexistent path on the live URL
-
-### Phase 1 Acceptance Criteria (all must pass before calling Phase 1 done)
-
-- [ ] Live, working Netlify URL exists and has been shared back to the founder
-- [ ] Code is modularized per the file structure above (no more single giant inline `<style>`/`<script>` block)
-- [ ] No visual or behavioral regressions vs. the approved prototype
-- [ ] `PROGRESS.md` updated with the live URL, the GitHub repo URL, and today's date
-- [ ] `docs/QA-CHECKLIST.md` created and filled in with actual pass/fail results, not left as a template
+**Verified Lighthouse (development branch, median of multiple runs):**
+Accessibility 100 · Best Practices 100 · SEO 100 · Performance ~87–88
 
 ---
 
-## Phase 2 (Not Started — Blocked on Founder Content)
+## Phase 3 — Accessibility Audit (COMPLETE)
 
-Swap placeholder content for real content once supplied:
-- Real project photos + captions (location, client, year) — replace the 3 illustrative project cards
-- Real, permissioned testimonials — replace the 3 illustrative testimonial cards
-- Facebook / X / LinkedIn URLs
-- Full street address / P.O. Box
-- TBS certification number/badge, if applicable
-- Resolve the "15+ years" vs "10 years" question
+Status: ✅ Resolved, pulled forward and closed 2026-07-27
 
-## Phase 3 (Not Started)
+Five issues resolved:
+- Main landmark
+- Heading order
+- Color contrast (`#475569` standard adopted)
+- Footer link distinguishability
+- Misplaced preload tag
 
-- Connect custom domain `mavoltage.co.tz` in Netlify DNS settings
-- Add an analytics tool (discuss options with founder — e.g. Netlify Analytics is a paid add-on, Plausible/Umami are privacy-friendly alternatives, Google Analytics is free but less private)
-- Full Lighthouse audit on the production URL (not localhost) for Performance/Accessibility/SEO/Best Practices ≥ 95
-- Full manual accessibility pass with a screen reader (VoiceOver or NVDA)
+Plus (this cycle): SEO metadata shortened to length limits, sitemap.xml updated, Netlify Forms honeypot accessibility attributes added, meta tag length fixes.
 
-## Phase 4 (Backlog)
+**Perf fix (2026-07-31):** hero.webp preload scoped to desktop only (`media="(min-width: 769px)"`) — eliminates unnecessary 145KB download on mobile viewports, which already receive `hero-768.webp`/`hero-320.webp` via CSS background-image swap. Verified via network request logging, not Lighthouse score (score is flat within noise, as expected for a single-resource fix).
 
-See `PROJECT.md` / `CONTEXT.md` future enhancements list — blog, CMS, multilingual (Swahili version), online quotation system, etc. Not scheduled.
+---
+
+## Phase 2 — Client Content (BLOCKED — pending client-supplied assets)
+
+Status: 🔶 Deferred, placeholder cards live on production as a deliberate logged decision
+
+| Blocker | Notes |
+|---|---|
+| Hero photo | Legacy hero flagged as unlicensed provenance — needs replacement, not just a swap |
+| OG cover photo | Needs correct 1200×630px ratio; legacy also unlicensed |
+| Project 1 industrial photo | **Known technical constraint:** a prior attempt to wire in project photos was reverted — 64px icon-sized containers are too small for wide industrial shots. Layout/sizing must be addressed *when* the real photo lands, not assumed to be a drop-in fix. |
+| Real business phone number | Placeholder in JSON-LD. A fabricated number was previously caught and reverted — do not accept an agent-supplied number without explicit client confirmation. |
+| Social URLs (FB, LinkedIn, X, YouTube, TikTok) | Instagram is the only confirmed real profile, already wired |
+| Permissioned testimonials | Current testimonials are placeholder; need real client quotes with permission on file |
+
+**Nothing in this phase should be marked complete without a client-supplied asset landing first.** Do not let agent self-reports advance this phase's status.
+
+---
+
+## Outstanding / Next Up
+
+- [ ] Custom domain (mavoltage.co.tz) confirmation and DNS setup
+- [ ] Resolve Phase 2 blockers as client assets arrive (one at a time, QA'd individually)
+- [ ] Final merge to `master` once all client-dependent blockers are resolved and full QA is complete
+- [ ] Re-run full Lighthouse suite (3+ runs, same environment) after Phase 2 content lands, since real photos will change payload size/LCP behavior
+
+---
+
+## Merge-to-master readiness checklist
+
+Do not open the master PR until all of the following are true:
+
+- [ ] All Phase 2 blockers resolved with real, client-approved assets
+- [ ] No placeholder content remains (`#` links, fabricated data, stock icon "photos")
+- [ ] Lighthouse: Accessibility 95+, Best Practices 95+, SEO 95+, Performance 95+ (median of 3+ same-environment runs)
+- [ ] No console errors or warnings
+- [ ] All internal/external links verified (no silent 404s)
+- [ ] Contact form + WhatsApp integration functional end-to-end
+- [ ] PROGRESS.md fully up to date with accurate, independently-verified entries
+- [ ] Explicit founder (MAVOLTAGE) sign-off
