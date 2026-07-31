@@ -4,6 +4,25 @@
 
 ---
 
+## 2026-07-31 — hero.webp preload scoped to desktop only
+
+**Status:** Committed and pushed to `development` (`ad2916d`). Mobile no longer downloads the 145KB desktop `hero.webp` that the responsive design never renders.
+
+**What was fixed:**
+- Added `media="(min-width: 769px)"` to the hero.webp `<link rel="preload">` in `index.html`. The desktop variant only applies at ≥769px — matching the `sections.css` `@media (max-width: 768px)` swap to `hero-768.webp` (and `max-width: 320px` → `hero-320.webp`). Desktop behavior unchanged; `fetchpriority` untouched; preload not removed.
+
+**Verification method (network-level, not score-based):**
+- Puppeteer request logging at Moto G Power emulation (412px): **before** the fix, mobile fetched both `hero.webp` (wasted) and `hero-768.webp`; **after**, only `hero-768.webp` is fetched.
+- Console "preloaded but not used" warning: observed intermittently in before-state (1 of 8 checks), absent in after-state (0 of 8).
+- Desktop (1280px) after-state: preload still applied and consumed — no regression.
+
+**Lighthouse note (important — do not treat as a score fix):**
+- Mobile-emulated Lighthouse (3 runs per side, localhost only for identical conditions): median **71 → 71** (before runs 94/71/70; after 72/71/71). **The score did not move and that is expected and fine** — the wasted download happens in parallel and is not the LCP driver; this is a bandwidth/correctness fix, not a score-driven one.
+
+**Blocked / Needs Input:** unchanged — real photos, testimonials, remaining social URLs still client-side.
+
+---
+
 ## 2026-07-31 — SEO metadata, sitemap, Netlify Forms, and accessibility polish
 
 **Status:** Closed out the last session's SEO/accessibility/forms work on the `development` branch. Committed locally, not yet pushed (3 commits ahead of `origin/development` at time of writing).
