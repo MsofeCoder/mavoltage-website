@@ -4,6 +4,29 @@
 
 ---
 
+## 2026-07-31 — SEO metadata, sitemap, Netlify Forms, and accessibility polish
+
+**Status:** Closed out the last session's SEO/accessibility/forms work on the `development` branch. Committed locally, not yet pushed (3 commits ahead of `origin/development` at time of writing).
+
+**Done this session (verified against `git diff development~3 -- index.html` and `sitemap.xml`):**
+- SEO metadata updates: shortened `title` and `meta name="description"`, expanded keywords, fixed canonical URL, Schema.org JSON-LD corrected to `LocalBusiness` with Morogoro locality and Netlify URL, cleaned Instagram `sameAs` URL
+- `sitemap.xml` updates: entries regenerated to match current pages/URLs
+- Netlify Forms configuration: `data-netlify="true"` + `name="contact"` on the contact form, hidden `form-name` field
+- Accessibility attribute additions: `netlify-honeypot="bot-field"` plus the hidden bot-field label with `aria-hidden` and `tabindex="-1"`
+- Meta tag length fixes: title/OG/Twitter descriptions shortened to fit search-engine and social-card length limits
+
+**Decisions made (and why):**
+- Real project/service photos and real testimonials are NOT logged here as complete — they are not part of this session's diff and remain client-blocked per PROJECT.md
+- Social links stay `#` placeholders with `<!-- TODO: awaiting client-provided URL -->` markers until the client supplies URLs
+
+**Blocked / Needs Input:**
+- Real project photos, permissioned testimonials, Facebook/X/LinkedIn URLs — all client-side
+- Confirm "15+ vs 10 years" in hero badge copy before final copy lock
+
+**Next action:** Push `development` to `origin` so the Netlify branch-deploy preview picks up this session's changes; no content work until client input arrives.
+
+---
+
 ## 2026-07-27 — Image directory structure aligned with PROJECT.md spec
 
 **Status:** Reorganized `assets/images/` to match the content-type subfolder layout. No content images exist yet — directories are ready to receive Phase 2 client-supplied photos.
