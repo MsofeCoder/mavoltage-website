@@ -4,6 +4,10 @@
 
 ---
 
+## 2026-08-02 — 15+ Years copy lock resolved
+
+**Status:** [2026-08-02] Resolved '15+ Years' copy-lock question (founder-confirmed); fixed capitalization in meta tags and footer prose across index.html and 404.html. Commit 11eb791.
+
 ## 2026-07-31 — hero.webp preload scoped to desktop only
 
 **Status:** Committed and pushed to `development` (`ad2916d`). Mobile no longer downloads the 145KB desktop `hero.webp` that the responsive design never renders.
