@@ -20,7 +20,7 @@ The official website for **Mavoltage Electrical Contractor**, an electrical engi
 | Houses electrified | 2048+ |
 | Slogan (Swahili) | "Huduma ni ya uhakika, na uaminifu ni sifa namba moja." |
 
-**Open question, needs founder confirmation before final copy lock:** hero badge currently says "15+ Years" for consistency with the 2008 founding date — an earlier reference mockup said "10 Years." Confirm which is correct.
+**Resolved:** Founder confirmed "15+ Years" is the correct and final copy.
 
 ## Brand — Non-Negotiable
 
