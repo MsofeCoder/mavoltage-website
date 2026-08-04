@@ -232,6 +232,61 @@ section {
     gap: 24px;
 }
 
+/* --- Services Photo Showcase --- */
+.services-showcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+}
+.services-showcase .showcase-item {
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+    box-shadow: var(--shadow-sm);
+}
+.services-showcase .showcase-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.services-showcase .showcase-item:hover img {
+    transform: scale(1.05);
+}
+
+/* --- BRELA Certificate Badge --- */
+.brela-badge {
+    margin-top: 28px;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--grey-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+.brela-cert-img {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+}
+.brela-caption {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.brela-caption i {
+    color: var(--yellow);
+    font-size: 16px;
+}
+
 /* --- Projects --- */
 .projects {
     background: var(--grey-light);

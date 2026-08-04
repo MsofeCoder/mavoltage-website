@@ -1,4 +1,4 @@
-/* ===== RESPONSIVE.CSS — All @media Rules ===== */
+/* ===== RESPONSIVE.CSS â€” All @media Rules ===== */
 
 /* --- Scroll Reveal --- */
 .reveal {
@@ -83,6 +83,7 @@
     .stat-item:nth-child(4) { border-right: none; }
 
     .services-grid { grid-template-columns: 1fr; }
+    .services-showcase { grid-template-columns: 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
     .testimonial-grid { grid-template-columns: 1fr; }
 

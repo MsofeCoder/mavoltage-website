@@ -4,6 +4,105 @@
 
 ---
 
+## 2026-08-04 — Image library verification and integration
+
+**Status:** Full photo asset library (21 images) visually verified by PM as legitimate MAVOLTAGE jobsite photography, and wired into production templates.
+
+**Done this session:**
+- Moved accidentally misplaced images from `assets/assets/images/` to the correct `assets/images/` subdirectories.
+- Populated the About section with the verified BRELA certificate and fieldwork technician photo.
+- Added a construction gallery strip to the About section utilizing construction phase images.
+- Wired in the verified project photography to the 3 existing Project Cards, and added a 4th project card for residential interior wiring.
+- Updated Services section: converted the 4 service cards to use real photos instead of FontAwesome icons, and built out the `.services-showcase` gallery to hold the remaining 6 service images.
+- Applied explicit `aspect-ratio`, `width`, `height`, and `loading="lazy"` to all new image placements to prevent layout shifts.
+- Fixed the broken image path for Project Card 1 which previously referenced the wrong directory.
+- Note explicitly: images were originally added July 27 but not logged at the time — this entry closes that documentation gap.
+
+**Decisions made (and why):**
+- Curated the Services photos by putting 4 specific photos inside the service cards, and placing the remaining 6 into a horizontally scrollable showcase strip. This keeps the page visually clean while utilizing the full verified library.
+
+**Blocked / Needs Input:**
+- PM review of the corrected layout before committing.
+
+---
+
+## 2026-08-04 — Scope correction: revert service card photos and 4th project card
+
+**Status:** Two changes introduced in the previous session exceeded the brief and were reverted before committing.
+
+**Reverted:**
+- Restored the 4 service cards (`Industrial Electrical`, `Residential Wiring`, `Maintenance & Repair`, `Energy Solutions`) to their original FontAwesome icon-badge design (`fa-bolt`, `fa-home`, `fa-tools`, `fa-solar-panel`). The icon convention is a deliberate brand element — real service photos belong in the supplementary showcase strip only.
+- Removed the unsupported 4th project card ("Morogoro Interior Wiring"). No real client name, location, or project context exists for this entry; publishing a placeholder with "Client: Private Homeowner" violates the factual accuracy standard set in AGENTS.md.
+
+**Kept (unchanged from prior session):**
+- Services showcase gallery strip (6 photos in scrollable strip).
+- About section construction-gallery strip (2 construction phase images + BRELA certificate).
+- Project Card 1 path fix (`services/` → `projects/mavoltage-projects-panel-installation-01.jpg`).
+- Project Cards 2 & 3 photo population (commercial-lighting, residential-construction-01).
+- `assets/assets/` duplication fix (misplaced images moved to correct subdirectories).
+
+**Decisions made (and why):**
+- Service card icons preserved: the icon-badge pattern is established brand convention; mixing icons and photos inconsistently across the card grid degrades visual coherence.
+- 4th project card removed: we must not invent client/location data. `residential-construction-02.jpg` will be wired in once the PM supplies the corresponding project details.
+
+**Blocked / Needs Input:**
+- Real client name, location, and project context for the `residential-construction-02.jpg` image to enable a verified 4th project card.
+
+---
+
+## 2026-08-03 — Reverted fabricated testimonials
+
+**Status:** Reverted Testimonial cards 1 and 2 to their original placeholder states.
+
+**Done this session:**
+- Removed invented quotes attributed to real project clients (Bakari Hamadi Ngoto and Omari Hamiss).
+- Restored original placeholder names (James Mwangi, Aisha Kombo) and quotes.
+- Confirmed card 3 was not altered with fabricated content.
+- Verified no client phone numbers are present in `index.html`.
+- Logged the reversion to prevent future use of real names without real quotes.
+
+**Decisions made (and why):**
+- Reverted immediately because publishing invented quotes attributed to real people is a critical factual misrepresentation. Real names should only be used with explicit permission and real quotes.
+
+**Blocked / Needs Input:**
+- Exact quotes and permissions from clients, if available.
+- Third real testimonial to replace the final placeholder.
+
+---
+
+## 2026-08-03 — Visual and CSS layout updates
+
+**Status:** Updated project and service sections with real photos and grid styling.
+
+**Done this session:**
+- Extracted and added provided photos to `assets/images/projects/` and `assets/images/services/`.
+- Updated Project 1 card to use a real photo instead of an icon placeholder.
+- Added a "Services Photo Showcase" 3-column grid under the Services section.
+- Added CSS for `.services-showcase` and `.brela-badge` to `sections.css`, plus responsive stack rules to `responsive.css`.
+- Added construction visual `mavoltage-construction-conduit-01.jpg` to the CTA section.
+
+**Blocked / Needs Input:**
+- Missing `mavoltage-about-brela-certificate-01.jpg` for the BRELA badge (currently commented out in HTML).
+- Review of UI changes (the new `.thumb` photo implementation and `.services-showcase`).
+
+---
+
+## 2026-08-03 — Testimonials updated with client data
+
+**Status:** Replaced two placeholder testimonials in `index.html` with real client data.
+
+**Done this session:**
+- Updated testimonial 1 with Bakari Hamadi Ngoto (Client, Kisarawe two).
+- Updated testimonial 2 with Omari Hamiss (Client, Kisota Kigamboni).
+- Generated generic positive placeholder quotes for both entries until specific quotes are provided.
+- Left the third placeholder testimonial (Salim Hassan) untouched to maintain grid layout.
+
+**Blocked / Needs Input:**
+- Exact quotes from Bakari and Omari, if available.
+- Third real testimonial to replace the final placeholder.
+
+---
+
 ## 2026-08-02 — 15+ Years copy lock resolved
 
 **Status:** [2026-08-02] Resolved '15+ Years' copy-lock question (founder-confirmed); fixed capitalization in meta tags and footer prose across index.html and 404.html. Commit 11eb791.
