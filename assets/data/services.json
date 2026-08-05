@@ -1,0 +1,50 @@
+{
+  "cards": [
+    {
+      "icon": "fas fa-bolt",
+      "title": "Industrial Electrical",
+      "description": "Complete electrical infrastructure for manufacturing plants, factories, and commercial complexes across Tanzania."
+    },
+    {
+      "icon": "fas fa-home",
+      "title": "Residential Wiring",
+      "description": "Modern home electrical installations including lighting design, outlets, smart home systems, and safety wiring."
+    },
+    {
+      "icon": "fas fa-tools",
+      "title": "Maintenance & Repair",
+      "description": "24/7 emergency repair services and scheduled maintenance to keep your electrical systems running safely and efficiently."
+    },
+    {
+      "icon": "fas fa-solar-panel",
+      "title": "Energy Solutions",
+      "description": "Solar panel installation, energy-efficient retrofits, and electrical load management for cost savings."
+    }
+  ],
+  "showcase": [
+    {
+      "img": "assets/images/services/mavoltage-services-generator-installation-01.jpg",
+      "alt": "Mavoltage technician performing generator installation on site"
+    },
+    {
+      "img": "assets/images/services/mavoltage-services-electrical-testing-01.jpg",
+      "alt": "Electrical testing and commissioning equipment in use by Mavoltage engineer"
+    },
+    {
+      "img": "assets/images/services/mavoltage-services-consumer-unit-wiring-01.jpg",
+      "alt": "Detailed view of consumer unit wiring installation"
+    },
+    {
+      "img": "assets/images/services/mavoltage-services-installation-process-01.jpg",
+      "alt": "Technician engaging in the electrical installation process"
+    },
+    {
+      "img": "assets/images/services/mavoltage-services-laser-alignment-01.jpg",
+      "alt": "Laser alignment tool used for precise electrical component positioning"
+    },
+    {
+      "img": "assets/images/services/mavoltage-services-electrical-engineer-01.jpg",
+      "alt": "Mavoltage electrical engineer inspecting site plans"
+    }
+  ]
+}

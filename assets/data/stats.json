@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "fas fa-users",
+    "target": 864,
+    "label": "Clients Served"
+  },
+  {
+    "icon": "fas fa-check-circle",
+    "target": 266,
+    "label": "Projects Completed"
+  },
+  {
+    "icon": "fas fa-clock",
+    "text": "15+",
+    "label": "Years Experience"
+  },
+  {
+    "icon": "fas fa-home",
+    "target": 2048,
+    "label": "Houses Electrified"
+  }
+]
