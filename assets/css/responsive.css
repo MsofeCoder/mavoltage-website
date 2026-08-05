@@ -37,8 +37,9 @@
 }
 
 @media (max-width: 768px) {
-    section { padding: 60px 0; }
+    section { padding: 60px 0; scroll-margin-top: 64px; }
     nav .container { height: 64px; }
+    
     .hero::before {
         background: linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.88) 100%);
     }
@@ -106,6 +107,17 @@
     .about-image .exp-badge {
         position: static;
         margin-top: 16px;
+    }
+
+    .construction-gallery {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+
+    .construction-gallery img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
     }
 }
 

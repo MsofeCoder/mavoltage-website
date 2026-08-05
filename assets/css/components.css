@@ -354,7 +354,6 @@ nav .container {
     border: 1px solid var(--grey-border);
     transition: var(--transition);
     position: relative;
-    overflow: hidden;
 }
 .service-card::before {
     content: '';
