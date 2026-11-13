@@ -1,0 +1,18 @@
+{
+  "title": "Mavoltage Electrical Contractor | Industrial, Commercial & Residential Electrical Services in Tanzania",
+  "canonical": "https://mavoltage.netlify.app/",
+  "heading": "\n                    Powering Tanzania's\n                    Homes & Industries\n                    with Precision.\n                ",
+  "forms": [
+    {
+      "id": "contactForm",
+      "noValidate": true
+    }
+  ],
+  "scriptURLs": [
+    "https://mavoltage.netlify.app/assets/js/main.js",
+    "https://mavoltage.netlify.app/assets/js/nav.js",
+    "https://mavoltage.netlify.app/assets/js/animations.js",
+    "https://mavoltage.netlify.app/assets/js/form.js"
+  ],
+  "errors": []
+}

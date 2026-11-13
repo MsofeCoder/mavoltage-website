@@ -1,3 +1,28 @@
+## 2026-11-13 — Production release preparation
+
+User explicitly authorized autonomous production readiness and publishing. Backed up original staged and unstaged changes outside the repository. Verified production and development HTML match origin/master and origin/development except Netlify pretty-URL rewriting. Netlify CLI account does not list this site; testing the existing Git deployment path.
+
+Packaged SW/EN redesign passes 40 Chrome browser checks and public-build regression. Added frame/embed protection and a clear legacy CMS limitation notice. Browser suite now skips private prototype capture unless TEST_REFERENCE=1, allowing the same acceptance checks against the public artifact and hosted site. No real customer enquiry sent.
+
+Release status and remaining verification are recorded in docs/implementation/production-release.md.
+
+---
+
+## 2026-11-04 — Approved bilingual redesign implemented for local review
+
+**Status:** Implemented on development; source remains uncommitted for approval under AGENT.md. Production and remotes unchanged.
+
+- Reviewed actual source, live homepage response, unpublished CMS groundwork and staged user work before implementation. Preserved original staging exactly; backup patch and baseline archive stored outside the repository.
+- Integrated approved SW-first/English design with exact extracted logo, service illustrations/details, process, FAQ and review-before-WhatsApp enquiry. Required phone / optional email, fixed destination, safe plain text, stale-preview invalidation and manual-copy fallback verified.
+- Preserved admin/auth source and existing assets/data. Legacy JSON editing is not yet mapped to the new bilingual homepage; recorded as a follow-up.
+- Added bilingual legal/404 pages, metadata, safe public-only deployment packaging and preview noindex. Private workspace files and handoff package excluded.
+- Chrome, Edge and Firefox: 40 browser checks passed each; axe SW/EN zero WCAG A/AA violations. Three final local Lighthouse runs: 100/100/100/100, CLS zero. These are local diagnostics, not hosted performance or WCAG certification.
+- Full evidence, source manifest, intentional differences, remaining limitations and release gate: docs/implementation/review-and-release.md.
+
+**Outstanding:** Explicit commit approval; actual Netlify production mapping (handoff says main, remote has master/development only); real hosted Identity/Git Gateway and deploy preview checks; actual browser zoom/real-mobile/screen-reader testing. No push, PR, merge or production release performed.
+
+---
+
 # PROGRESS.md — Mavoltage Website Progress Log
 
 > Update this file at the end of every work session. Newest entry at the top. Be factual and specific — no marketing language.

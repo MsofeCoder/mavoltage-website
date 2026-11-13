@@ -3,37 +3,38 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('assets/data/stats.json')
         .then(res => res.json())
         .then(data => {
+            const items = data.items;
             const statItems = document.querySelectorAll('.stats .stat-item');
             statItems.forEach((item, i) => {
-                if (data[i]) {
+                if (items[i]) {
                     const iconEl = item.querySelector('.icon i');
                     const numEl = item.querySelector('.num');
                     const labelEl = item.querySelector('.label');
 
-                    if (iconEl && data[i].icon) {
-                        iconEl.className = data[i].icon;
+                    if (iconEl && items[i].icon) {
+                        iconEl.className = items[i].icon;
                     }
                     if (numEl) {
-                        if (data[i].target) {
+                        if (items[i].target) {
                             const counter = numEl.querySelector('.counter');
                             if (counter) {
-                                counter.setAttribute('data-target', data[i].target);
+                                counter.setAttribute('data-target', items[i].target);
                             }
-                        } else if (data[i].text) {
-                            numEl.textContent = data[i].text;
+                        } else if (items[i].text) {
+                            numEl.textContent = items[i].text;
                         }
                     }
-                    if (labelEl && data[i].label) {
-                        labelEl.textContent = data[i].label;
+                    if (labelEl && items[i].label) {
+                        labelEl.textContent = items[i].label;
                     }
                 }
             });
-            if (data.length !== statItems.length) {
-                console.warn(`Stats count mismatch: JSON has ${data.length}, HTML has ${statItems.length}`);
+            if (items.length !== statItems.length) {
+                console.warn(`Stats count mismatch: JSON has ${items.length}, HTML has ${statItems.length}`);
             }
         }).catch(err => console.error('Stats loading failed:', err));
 
-    // Load Services
+    // Load Services (services.json is already object-shaped: data.cards / data.showcase)
     fetch('assets/data/services.json')
         .then(res => res.json())
         .then(data => {
@@ -60,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.warn(`Services cards count mismatch: JSON has ${data.cards.length}, HTML has ${serviceCards.length}`);
                 }
             }
-            
+
             if (data.showcase) {
                 const showcaseItems = document.querySelectorAll('.services-showcase .showcase-item');
                 showcaseItems.forEach((item, i) => {
@@ -82,31 +83,32 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('assets/data/projects.json')
         .then(res => res.json())
         .then(data => {
+            const items = data.items;
             const projectCards = document.querySelectorAll('.projects-grid .project-card');
             projectCards.forEach((card, i) => {
-                if (data[i]) {
+                if (items[i]) {
                     const img = card.querySelector('.project-thumb');
                     const tag = card.querySelector('.tag-sm');
                     const title = card.querySelector('h3');
                     const client = card.querySelector('p');
 
                     if (img) {
-                        img.src = data[i].img;
-                        img.alt = data[i].alt;
+                        img.src = items[i].img;
+                        img.alt = items[i].alt;
                     }
-                    if (tag && data[i].tag) {
-                        tag.textContent = data[i].tag;
+                    if (tag && items[i].tag) {
+                        tag.textContent = items[i].tag;
                     }
-                    if (title && data[i].title) {
-                        title.textContent = data[i].title;
+                    if (title && items[i].title) {
+                        title.textContent = items[i].title;
                     }
-                    if (client && data[i].client) {
-                        client.textContent = data[i].client;
+                    if (client && items[i].client) {
+                        client.textContent = items[i].client;
                     }
                 }
             });
-            if (data.length !== projectCards.length) {
-                console.warn(`Projects count mismatch: JSON has ${data.length}, HTML has ${projectCards.length}`);
+            if (items.length !== projectCards.length) {
+                console.warn(`Projects count mismatch: JSON has ${items.length}, HTML has ${projectCards.length}`);
             }
         }).catch(err => console.error('Projects loading failed:', err));
 
@@ -114,30 +116,31 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('assets/data/testimonials.json')
         .then(res => res.json())
         .then(data => {
+            const items = data.items;
             const testimonialCards = document.querySelectorAll('.testimonial-grid .testimonial-card');
             testimonialCards.forEach((card, i) => {
-                if (data[i]) {
+                if (items[i]) {
                     const quote = card.querySelector('.quote');
                     const avatar = card.querySelector('.avatar');
                     const name = card.querySelector('.name');
                     const role = card.querySelector('.role');
 
-                    if (quote && data[i].quote) {
-                        quote.innerHTML = `&ldquo;${data[i].quote}&rdquo;`;
+                    if (quote && items[i].quote) {
+                        quote.innerHTML = `&ldquo;${items[i].quote}&rdquo;`;
                     }
-                    if (avatar && data[i].avatar) {
-                        avatar.textContent = data[i].avatar;
+                    if (avatar && items[i].avatar) {
+                        avatar.textContent = items[i].avatar;
                     }
-                    if (name && data[i].name) {
-                        name.textContent = data[i].name;
+                    if (name && items[i].name) {
+                        name.textContent = items[i].name;
                     }
-                    if (role && data[i].role) {
-                        role.textContent = data[i].role;
+                    if (role && items[i].role) {
+                        role.textContent = items[i].role;
                     }
                 }
             });
-            if (data.length !== testimonialCards.length) {
-                console.warn(`Testimonials count mismatch: JSON has ${data.length}, HTML has ${testimonialCards.length}`);
+            if (items.length !== testimonialCards.length) {
+                console.warn(`Testimonials count mismatch: JSON has ${items.length}, HTML has ${testimonialCards.length}`);
             }
         }).catch(err => console.error('Testimonials loading failed:', err));
 });

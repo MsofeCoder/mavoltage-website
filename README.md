@@ -10,15 +10,15 @@ Official website for **Mavoltage Electrical Contractor**, an electrical engineer
 - Google Fonts (Inter)
 - Font Awesome 6
 
-No build tools, no frameworks — static site.
+No frontend framework or JavaScript bundler. A small Python script packages only public files for deployment.
 
 ## File Structure
 
 ```
 ├── index.html              # Homepage
 ├── 404.html                # Error page
-├── privacy-policy.html     # Privacy policy (placeholder)
-├── terms.html              # Terms of service (placeholder)
+├── privacy-policy.html     # Privacy information
+├── terms.html              # Terms of service
 ├── robots.txt              # Crawler rules
 ├── sitemap.xml             # Search engine sitemap
 ├── netlify.toml            # Netlify deployment config
@@ -48,15 +48,18 @@ No build tools, no frameworks — static site.
 This is a static site. Open `index.html` in a browser, or serve with any static server:
 
 ```bash
-# Using Python
-python -m http.server 8080
-
-# Using Node.js (with serve)
-npx serve .
+python tools/build_site.py
+python tools/preview.py
 ```
+
+Open http://127.0.0.1:8082. Local previews carry `noindex` headers. The `dist/` artifact excludes repository documents, the handoff package, and private workspace files. Admin files and existing assets are preserved.
+
+The redesigned homepage defaults to Swahili, supports English, and prepares an enquiry for visitor review before opening WhatsApp. Phone is required; email is optional. It does not submit enquiries to Netlify Forms or save enquiry data.
+
+Review evidence and limitations: [development review](docs/implementation/review-and-release.md). Regression instructions: [tests](tests/README.md).
 
 ## Deployment
 
-Deployed on Netlify free tier. Push to the `main` branch of the GitHub repo and Netlify auto-deploys.
+Hosted on Netlify. The remote currently has `master` and `development`, with no `main`; older project records identify `master` as production. Confirm the actual Netlify mapping before any push or release. Production release was authorized on 13 November 2026; see docs/implementation/production-release.md for the verified deployment outcome. Netlify builds use `python3 tools/build_site.py` and publish `dist`; preview contexts get noindex while `CONTEXT=production` retains production indexing.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/PLACEHOLDER/deploy-status)](https://app.netlify.com)
+
