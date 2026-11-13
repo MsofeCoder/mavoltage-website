@@ -30,3 +30,15 @@ Rollback: the previous master source is 0d84df010e4a75e276b0a57a3fe234b57cab2042
 ## Limits
 
 No real message is sent as part of automated QA. Real-device, screen-reader, mailbox delivery and business-account ownership checks are not claimed. No custom domain, payments, customer database or marketplace launch is included in this contractor-site release.
+
+## Production outcome
+
+PR #1 merged on 13 November 2026 at 19:25 EAT: https://github.com/MsofeCoder/mavoltage-website/pull/1 . Release merge: 81543af70fe395ece585dedec02fb6a858c6cb12.
+
+The production URL https://mavoltage.netlify.app/ now serves the bilingual redesign. Production Chrome acceptance: 40/40 passed, including SW/EN axe scans, responsive widths and enquiry preparation. No enquiry was transmitted. Public CSS/JS bytes match the tested source (line-ending normalized).
+
+Homepage, legal pages, sitemap, robots and assets returned 200. Nested missing pages, README, signature files and marketplace paths returned 404. Production has no noindex header; admin remains noindex; preview stays noindex. Security headers are present. Netlify PR checks for deployment, header rules and redirects completed successfully.
+
+The legacy CMS remains explicitly limited to old JSON collections. The public homepage is maintained through versioned source releases; no functional bilingual CMS claim is made.
+
+Live production Lighthouse mobile runs: performance 96 / 97 / 99 (median 97); accessibility, best practices and SEO 100 in all three runs. CLS zero in all runs. These are simulated lab measurements of the live URL, not real-user field data. Full summaries: production-performance-results.json.
