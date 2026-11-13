@@ -1,4 +1,4 @@
-/* ===== COMPONENTS.CSS — Buttons, Nav, Cards, Forms, Badges ===== */
+/* ===== COMPONENTS.CSS ï¿½ Buttons, Nav, Cards, Forms, Badges ===== */
 
 /* --- Buttons --- */
 .btn {
@@ -200,7 +200,7 @@ nav .container {
     background: var(--grey-light);
 }
 .nav-links a.active {
-    color: var(--red);
+    color: var(--red-dark);
     background: rgba(220,38,38,0.08);
 }
 .nav-links .nav-cta {
@@ -354,7 +354,6 @@ nav .container {
     border: 1px solid var(--grey-border);
     transition: var(--transition);
     position: relative;
-    overflow: hidden;
 }
 .service-card::before {
     content: '';
@@ -385,14 +384,14 @@ nav .container {
     margin-bottom: 20px;
     transition: var(--transition);
 }
-.service-card:nth-child(1) .service-icon { background: var(--red); color: white; box-shadow: 0 6px 16px rgba(220,38,38,0.3); }
-.service-card:nth-child(2) .service-icon { background: var(--yellow); color: var(--darker); box-shadow: 0 6px 16px rgba(245,158,11,0.3); }
-.service-card:nth-child(3) .service-icon { background: var(--blue); color: white; box-shadow: 0 6px 16px rgba(37,99,235,0.3); }
-.service-card:nth-child(4) .service-icon { background: linear-gradient(135deg, var(--red), var(--blue)); color: white; box-shadow: 0 6px 16px rgba(37,99,235,0.25); }
+.service-card:nth-child(1) .service-icon { box-shadow: 0 0 0 2px var(--red); }
+.service-card:nth-child(2) .service-icon { box-shadow: 0 0 0 2px var(--yellow); }
+.service-card:nth-child(3) .service-icon { box-shadow: 0 0 0 2px var(--blue); }
+.service-card:nth-child(4) .service-icon { box-shadow: 0 0 0 2px var(--blue); }
 .service-card:hover .service-icon {
     transform: scale(1.1) rotate(-5deg);
 }
-.service-card h4 {
+.service-card h3 {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -422,17 +421,26 @@ nav .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
+    background: var(--darker);
     position: relative;
     overflow: hidden;
 }
-.project-card:nth-child(1) .thumb { background: linear-gradient(135deg, #1E293B, #334155); color: var(--yellow); }
-.project-card:nth-child(2) .thumb { background: linear-gradient(135deg, #1E3A5F, #0F172A); color: var(--blue-light); }
-.project-card:nth-child(3) .thumb { background: linear-gradient(135deg, #2D1B1B, #1E293B); color: var(--red); }
 .project-card .thumb .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+.project-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+}
+.project-card .thumb i {
+    font-size: 48px;
+    position: relative;
+    z-index: 1;
 }
 .project-card .info {
     padding: 24px;
@@ -448,7 +456,7 @@ nav .container {
 .project-card:nth-child(1) .tag-sm { background: rgba(245,158,11,0.12); color: #D97706; }
 .project-card:nth-child(2) .tag-sm { background: rgba(37,99,235,0.12); color: var(--blue); }
 .project-card:nth-child(3) .tag-sm { background: rgba(220,38,38,0.12); color: var(--red); }
-.project-card .info h4 {
+.project-card .info h3 {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 8px;
@@ -550,4 +558,26 @@ nav .container {
 }
 .contact-form-wrap .form-group {
     margin-bottom: 16px;
+}
+
+.hidden-field {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.hidden-field label {
+    display: block;
+}
+
+.hidden-field input {
+    border: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
 }

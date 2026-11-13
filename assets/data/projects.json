@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "img": "assets/images/projects/mavoltage-projects-panel-installation-01.jpg",
+      "alt": "Large electrical panel installation at industrial project site",
+      "tag": "Industrial",
+      "title": "Kisarawe, Coast Region",
+      "client": "Client: Bakari Hamadi Ngoto"
+    },
+    {
+      "img": "assets/images/projects/mavoltage-projects-commercial-lighting-01.jpg",
+      "alt": "Commercial electrical lighting installation in an office building, Dar es Salaam",
+      "tag": "Commercial",
+      "title": "Kigamboni (Kisota), Dar es Salaam",
+      "client": "Client: Omari Hamiss"
+    },
+    {
+      "img": "assets/images/projects/mavoltage-projects-residential-construction-01.jpg",
+      "alt": "Two-story residential house exterior under construction with electrical power infrastructure, Morogoro",
+      "tag": "Residential",
+      "title": "Babati, Manyara Region",
+      "client": "Client: Adamu Msofe"
+    }
+  ]
+}

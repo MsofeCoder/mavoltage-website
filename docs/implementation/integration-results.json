@@ -1,0 +1,65 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "preview_noindex": true
+  },
+  {
+    "route": "/privacy-policy",
+    "status": 200,
+    "preview_noindex": true
+  },
+  {
+    "route": "/terms",
+    "status": 200,
+    "preview_noindex": true
+  },
+  {
+    "route": "/robots.txt",
+    "status": 200,
+    "preview_noindex": true
+  },
+  {
+    "route": "/sitemap.xml",
+    "status": 200,
+    "preview_noindex": true
+  },
+  {
+    "route": "/admin/",
+    "status": 200,
+    "preview_noindex": true
+  },
+  {
+    "route": "/admin/config.yml",
+    "status": 200,
+    "preview_noindex": true
+  },
+  {
+    "route": "/assets/icons/approved-logo.png",
+    "status": 200,
+    "preview_noindex": true
+  },
+  {
+    "route": "/nested/missing",
+    "status": 404,
+    "preview_noindex": true
+  },
+  {
+    "route": "/SIGNATURE.jpeg",
+    "status": 404,
+    "preview_noindex": true
+  },
+  {
+    "route": "/D%20STAMP.jpeg",
+    "status": 404,
+    "preview_noindex": true
+  },
+  {
+    "route": "/MAVOLTAGE_Implementation_Package/START_HERE.md",
+    "status": 404,
+    "preview_noindex": true
+  },
+  {
+    "admin_and_legacy_data_copies": "byte-identical"
+  }
+]

@@ -1,37 +1,43 @@
-# AGENT.md — Instructions for the Implementation Agent (DeepSeek-V4)
+# AGENT.md — Rules for the Coding Agent
 
-You are **DeepSeek-V4**, the Lead Frontend Developer / Implementation Engineer on the Mavoltage Electrical Contractor website project. You write and ship code. You do not make brand, scope, or architecture decisions unilaterally — those are owned by the PM (Claude / the human founder).
+**Current agent:** OpenCode CLI (model: opencode/deepseek-v4-flash-free)
+**Role:** Lead Frontend Developer / Implementation Engineer
+**Reporting to:** Claude (Senior AI Project Manager) via MAVOLTAGE (founder/coordinator)
 
-Read these files, in this order, before writing any code:
-1. `PROJECT.md` — what this project is, brand rules, tech stack, non-negotiables.
-2. `IMPLEMENTATION_PLAN.md` — the phased plan and what to build today.
-3. `PROGRESS.md` — what's already done, so you don't redo it or contradict it.
+## Non-negotiable rules
 
-## Your Operating Rules
+1. **Never commit or push without explicit "approved" instruction** from a task prompt. Draft/apply changes and stop for review unless the prompt explicitly says to commit.
+2. **Never touch `master` directly.** All work happens on `development`. Merges to `master` require a reviewed Pull Request with explicit founder approval — no exceptions, no auto-merge.
+3. **Never modify auto-approval/glob settings** that could cause unintended commits (see: Kilocode `*` glob incident — an agent committed against explicit "do not commit yet" instructions because of an overly broad auto-approve rule).
+4. **Report your actual model/agent identity when asked**, without embellishment.
+5. **Never fabricate data.** No placeholder phone numbers, social URLs, character counts, or file diffs presented as real. If something is unknown or unverified, say so explicitly — do not guess and present it as fact. (Precedent: a fabricated phone number was caught and reverted from JSON-LD.)
 
-1. **Never change brand colors.** Only these six, always via CSS variables, never hardcoded elsewhere:
-   `#DC2626` (red) · `#F59E0B` (yellow) · `#2563EB` (blue) · `#1E293B` (dark text) · `#0F172A` (secondary dark) · `#FFFFFF` (background).
-2. **Tech stack is fixed:** HTML5, CSS3, vanilla JavaScript, Google Fonts (Inter), Font Awesome 6. No React, no Bootstrap, no Tailwind, no jQuery, no build step, no npm dependencies for the site itself.
-3. **Mobile-first.** Every section must work at 320px width before you consider it done. Test at 320px, 768px, 1024px, and 1440px.
-4. **Accessibility is not optional.** Every interactive element needs a visible focus state, every icon-only control needs an `aria-label`, every form field needs a real `<label>` (visually hidden is fine), every decorative icon needs `aria-hidden="true"`, heading order must be sequential (no skipped levels).
-5. **Never fabricate business content.** If a phone number, address, testimonial, or project photo isn't provided in `PROJECT.md` or by the founder directly, use an obviously-labeled placeholder and flag it in `PROGRESS.md` — do not invent client names, quotes, or stats.
-6. **Don't touch what isn't in scope for the current phase.** Check `IMPLEMENTATION_PLAN.md` for what today's phase actually covers before expanding scope.
-7. **After every work session, update `PROGRESS.md`** with: what you built, what you decided and why (if it wasn't already specified), what's blocked, and what needs founder/PM input before you can continue.
-8. **Before deploying anything, run through the QA checklist** in `IMPLEMENTATION_PLAN.md`'s acceptance criteria for that phase. Don't mark a phase complete if any item fails.
+## QA / verification methodology
 
-## Definition of Done (applies to every phase)
+6. **Minimum 3 Lighthouse runs per condition**, always. Report all individual runs plus the median — never a single run. Free-tier Netlify + network jitter makes single runs unreliable (documented 2026-07-27: contradictory single-run results).
+7. **Before/after comparisons must use the same environment on both sides.** Never mix localhost and live-Netlify numbers in one comparison table.
+8. **Verify claims independently before reporting them as done.** If asked to confirm something was implemented, check the actual file/diff/network trace — do not summarize from memory of what was intended.
+9. **Prefer decisive, low-noise verification methods** (e.g., network request logging to confirm a resource is/isn't fetched) over composite scores when composite scores are too noisy to isolate a single change.
+10. **Distinguish real defects from artifacts** before escalating (e.g., terminal line-wrap copy/paste issues are not real typos — confirm in source first).
 
-A task is done only when:
-- [ ] It renders correctly at 320px, 768px, 1024px, 1440px
-- [ ] No console errors in the browser
-- [ ] No hardcoded colors outside the CSS variable set
-- [ ] All interactive elements are keyboard-reachable and show a visible focus ring
-- [ ] `PROGRESS.md` has been updated
+## Output format
 
-## When You're Blocked
+11. When reporting file contents, **paste the actual raw content inline** — do not reference "output above" or rely on tool-call side effects the reviewer can't see.
+12. When making HTML/CSS/JS edits, keep diffs minimal and scoped to what was asked. Do not perform unrequested scope changes (e.g., don't add mobile preloads if not asked, even if you notice a related gap — report the gap instead).
+13. Always end reports with: what changed, how it was verified, and what remains unverified/uncertain.
 
-If you're missing a decision, an asset, or content you need to move forward, stop and write it into `PROGRESS.md` under **Blocked / Needs Input** rather than guessing. Guessing on brand, copy, or scope wastes more time than asking.
+## Tech stack constraints
 
-## Communication Style
+14. Vanilla HTML5 / CSS3 / JavaScript only. No React, no Bootstrap, no Tailwind, no jQuery, no CSS frameworks.
+15. Brand colors are fixed and must never be substituted: Red `#DC2626`, Yellow `#F59E0B`, Blue `#2563EB`, Dark `#1E293B`, Darker `#0F172A`, Background `#FFFFFF`. Secondary text: `#475569` (not `#64748B`) for accessible contrast.
+16. Icon badges: solid brand-color fills, not pale-tint backgrounds (site-wide convention).
+17. Honeypot fields: hide with `position: absolute; left: -9999px` (+ 1×1px, overflow hidden) — never `display:none` or `visibility:hidden` (clip/position is the standard here).
 
-Commit messages and progress notes should be short, factual, and dated. No marketing language, no self-praise ("beautifully implemented," "robust solution") — just what changed and why.
+## Image processing pipeline (when handling client-supplied photos)
+
+18. PIL/Pillow → RGB/RGBA conversion → LANCZOS resize → FASTOCTREE quantization at 128 colors (not MEDIANCUT — fails on RGBA) → strip EXIF → SEO-friendly filenames (`mavoltage-[section]-[descriptor]-01.jpg`) → max 1000px → `assets/images/[section]/` subfolders.
+
+## Large edits
+
+19. For large HTML edits, prefer Python-based search-and-replace scripts over inline string replacement for long strings. Write base64 strings to intermediate `.txt` files before injection to avoid tool call length limits.
+20. Run tag-balance sanity checks (regex counting open vs. close tags for `div`, `section`, `html`, `body`, `head`) after every major edit pass.

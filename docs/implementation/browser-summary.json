@@ -1,0 +1,17 @@
+{
+  "Chrome": {
+    "version": "156.0.8078.80",
+    "passed": 40,
+    "failed": 0
+  },
+  "Edge": {
+    "version": "156.0.4314.58",
+    "passed": 40,
+    "failed": 0
+  },
+  "firefox": {
+    "version": "157.0",
+    "passed": 40,
+    "failed": 0
+  }
+}
