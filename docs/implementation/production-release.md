@@ -15,11 +15,15 @@ Legacy CMS files are retained and prominently identify their limitation: their J
 - Public-build regression passed all four deployment contexts.
 - Chrome: 40/40 acceptance checks passed against the packaged artifact, including bilingual validation, message encoding, stale-preview invalidation, copy fallback, no-JS contact, mobile widths and axe accessibility scans.
 - Mobile screenshot visually inspected.
-- Additional browser, performance and hosted checks are in progress; final outcomes will be appended before closeout.
+- Edge: 40/40 checks passed against the packaged artifact.
+- Hosted development preview: 40/40 checks passed, with no page errors or failed requests.
+- Three local mobile Lighthouse runs: performance 99 / 99 / 98 (median 99); accessibility, best practices and SEO 100 / 100 / 100 each. LCP 1507 / 1451 / 1634 ms (median 1507 ms); CLS zero in all runs. Local diagnostics, not production field measurements.
+- Mobile and desktop screenshots inspected. Homepage, legal pages and assets have no broken local file references or duplicate IDs.
+- Hosted routes: homepage, legal pages, sitemap, admin shell and assets return 200; nested missing paths and private workspace filenames return 404. Preview noindex and security headers verified.
 
 ## Deployment
 
-Existing production HTML matches origin/master and preview HTML matches origin/development, except Netlify pretty-URL rewriting. The available Netlify account does not list this site. Existing Git deployment integration will be checked with a development push before production.
+Existing production HTML matches origin/master and preview HTML matches origin/development, except Netlify pretty-URL rewriting. The available Netlify account does not list this site. Existing Git deployment integration successfully built development commit e015523. The hosted preview serves the redesigned page and expected headers. Production release proceeds through a reviewed development-to-master pull request.
 
 Rollback: the previous master source is 0d84df010e4a75e276b0a57a3fe234b57cab2042. Use a revert through the same deployment pipeline if the release fails; do not rewrite history.
 

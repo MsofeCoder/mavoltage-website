@@ -61,5 +61,3 @@ Review evidence and limitations: [development review](docs/implementation/review
 ## Deployment
 
 Hosted on Netlify. The remote currently has `master` and `development`, with no `main`; older project records identify `master` as production. Confirm the actual Netlify mapping before any push or release. Production release was authorized on 13 November 2026; see docs/implementation/production-release.md for the verified deployment outcome. Netlify builds use `python3 tools/build_site.py` and publish `dist`; preview contexts get noindex while `CONTEXT=production` retains production indexing.
-
-
