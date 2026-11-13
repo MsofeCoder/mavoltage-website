@@ -1,0 +1,26 @@
+{
+  "Chrome": {
+    "version": "157.0.8103.79",
+    "base": "http://127.0.0.1:8083",
+    "passed": 40,
+    "failed": 0
+  },
+  "Edge": {
+    "version": "157.0.4341.46",
+    "base": "http://127.0.0.1:8083",
+    "passed": 40,
+    "failed": 0
+  },
+  "HostedPreview": {
+    "version": "157.0.8103.79",
+    "base": "https://development--mavoltage.netlify.app",
+    "passed": 40,
+    "failed": 0
+  },
+  "Production": {
+    "version": "157.0.8103.79",
+    "base": "https://mavoltage.netlify.app",
+    "passed": 40,
+    "failed": 0
+  }
+}

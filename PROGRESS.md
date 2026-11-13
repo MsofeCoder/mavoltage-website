@@ -4,7 +4,7 @@ User explicitly authorized autonomous production readiness and publishing. Backe
 
 Packaged SW/EN redesign passes 40 Chrome browser checks and public-build regression. Added frame/embed protection and a clear legacy CMS limitation notice. Browser suite now skips private prototype capture unless TEST_REFERENCE=1, allowing the same acceptance checks against the public artifact and hosted site. No real customer enquiry sent.
 
-Release status and remaining verification are recorded in docs/implementation/production-release.md.
+Published through PR #1 (merge 81543af). Production URL serves the new design and passed 40/40 browser acceptance checks. Public pages are indexable, admin and previews noindex, private files return 404. Release evidence and limits: docs/implementation/production-release.md.
 
 ---
 
